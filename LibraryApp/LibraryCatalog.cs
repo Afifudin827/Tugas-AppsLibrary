@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace LibraryApp;
+﻿namespace LibraryApp;
 class LibraryCatalog : Book
 {
     public static bool addBook(Book book)
@@ -20,35 +14,32 @@ class LibraryCatalog : Book
         }
     }
 
-    public static bool removeBook(Book book) 
+    public static bool removeBook(Book booksk)
     {
         try
-        {   
-            books.Remove(book);
-            return true; 
-        }catch (Exception e) 
+        {
+            books.RemoveAll(x => x.title == booksk.title);
+            return true;
+        }
+        catch (Exception e)
         {
             return false;
         }
     }
-    public static List<Book> findBook(string title) 
+    public static Book findBook(string title)
     {
         List<Book> list = new List<Book>();
         foreach (var item in books)
         {
             if (item.title.Contains(title))
             {
-                list.Add( new Book(item.title, item.author, item.publicationYear));
-                return list;
+                return new Book(item.title, item.author, item.publicationYear);
             }
         }
-        return list;
+        return new Book();
     }
-    public static void listBook()
+    public static List<Book> listBook()
     {
-        foreach (var item in books)
-        {
-            
-        }
+        return books;   
     }
 }

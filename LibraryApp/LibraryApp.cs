@@ -98,14 +98,7 @@ class LibraryApp
         libraryBooks.title = title;
         libraryBooks.author = author;
         libraryBooks.publicationYear = pubYear;
-        if (LibraryCatalog.addBook(libraryBooks))
-        {
-            Console.Write("=== Add Books Success ===");
-        }
-        else
-        {
-            Console.Write("=== Add Book Failed ===");
-        }
+        LibraryCatalog.addBook(libraryBooks);
         Console.ReadKey();
     }
 

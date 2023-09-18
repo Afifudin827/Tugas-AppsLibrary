@@ -3,36 +3,23 @@ class LibraryCatalog : Book
 {
     public static bool addBook(Book book)
     {
-        try
-        {
-            books.Add(book);
-            return true;
-        }
-        catch (Exception e)
-        {
-            return false;
-        }
+        books.Add(book);
+        return true;
     }
 
     public static bool removeBook(Book booksks)
     {
-        try
+        var item = books.SingleOrDefault(x => x.title == booksks.title);
+        if (item != null && item.title == booksks.title)
         {
-            var item = books.SingleOrDefault(x => x.title == booksks.title);
-            if (item != null && item.title == booksks.title)
-            {
-                books.Remove(item);
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            books.Remove(item);
+            return true;
         }
-        catch (Exception e)
+        else
         {
             return false;
         }
+
     }
     public static Book findBook(string title, string status)
     {

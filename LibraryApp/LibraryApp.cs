@@ -114,9 +114,10 @@ class LibraryApp
         Console.WriteLine("=== List of Books ===");
         foreach (var data in LibraryCatalog.listBook())
         {
-            Console.WriteLine($"Book title          : {data.title}");
-            Console.WriteLine($"Author              : {data.author}");
-            Console.WriteLine($"Publication Year    : {data.publicationYear}");
+            viewBooks(
+                data.title,
+                data.author,
+                data.publicationYear);
             Console.WriteLine("========================");
         }
     }
@@ -160,9 +161,10 @@ class LibraryApp
         }
         else
         {
-            Console.WriteLine("Books Title      : " + LibraryCatalog.findBook(title, "find").title);
-            Console.WriteLine("Author           : " + LibraryCatalog.findBook(title, "find").author);
-            Console.WriteLine("Year Publication : " + LibraryCatalog.findBook(title, "find").publicationYear);
+            viewBooks(
+                LibraryCatalog.findBook(title, "find").title, 
+                LibraryCatalog.findBook(title, "find").author, 
+                LibraryCatalog.findBook(title, "find").publicationYear);
         }
     }
 
@@ -183,5 +185,12 @@ class LibraryApp
             Console.WriteLine("title Books is invalid");
         }
         Console.ReadKey();
+    }
+
+    private static void viewBooks(string title, string author, string pubYear )
+    {
+        Console.WriteLine("Books Title      : " + title);
+        Console.WriteLine("Author           : " + author);
+        Console.WriteLine("Year Publication : " + pubYear);
     }
 }

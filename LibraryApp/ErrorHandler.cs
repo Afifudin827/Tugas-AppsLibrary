@@ -28,4 +28,29 @@ class ErrorHandler
         }
 
     }
+
+    public static void errorRemoveBook(string title)
+    {
+        if (!ErrorHandler.errorInputValidate(title, ""))
+        {
+            Console.WriteLine("Input title invalid");
+        }
+        else if (LibraryCatalog.removeBook(LibraryCatalog.findBook(title, "remove")))
+        {
+            Console.WriteLine("Books Was Success to remove");
+        }
+        else
+        {
+            Console.WriteLine("title Books is invalid");
+        }
+    }
+    public static bool errorSearchBook(string title)
+    {
+        if (string.IsNullOrEmpty(LibraryCatalog.findBook(title, "find").title) || title == "")
+        {
+            Console.WriteLine("Sorry book not available");
+            return false;
+        }
+        return true;
+    }
 }

@@ -148,22 +148,17 @@ class LibraryApp
                     break;
             }
         } while (program);
-
     }
 
     private static void searchBook()
     {
         Console.Write("Search title : ");
         string title = Console.ReadLine();
-        if (string.IsNullOrEmpty(LibraryCatalog.findBook(title, "find").title) || title == "")
-        {
-            Console.WriteLine("Sorry book not available");
-        }
-        else
+        if (ErrorHandler.errorSearchBook(title))
         {
             viewBooks(
-                LibraryCatalog.findBook(title, "find").title, 
-                LibraryCatalog.findBook(title, "find").author, 
+                LibraryCatalog.findBook(title, "find").title,
+                LibraryCatalog.findBook(title, "find").author,
                 LibraryCatalog.findBook(title, "find").publicationYear);
         }
     }
@@ -172,22 +167,11 @@ class LibraryApp
     {
         Console.Write("Search Title to remove : ");
         string title = Console.ReadLine();
-        if (!ErrorHandler.errorInputValidate(title, ""))
-        {
-            Console.WriteLine("Input title invalid");
-        }
-        else if (LibraryCatalog.removeBook(LibraryCatalog.findBook(title, "remove")))
-        {
-            Console.WriteLine("Books Was Success to remove");
-        }
-        else
-        {
-            Console.WriteLine("title Books is invalid");
-        }
+        ErrorHandler.errorRemoveBook(title);
         Console.ReadKey();
     }
 
-    private static void viewBooks(string title, string author, string pubYear )
+    private static void viewBooks(string title, string author, string pubYear)
     {
         Console.WriteLine("Books Title      : " + title);
         Console.WriteLine("Author           : " + author);
